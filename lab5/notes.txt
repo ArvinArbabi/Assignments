@@ -1,0 +1,1 @@
+Use utf-8 encoding to open the test file for reading
