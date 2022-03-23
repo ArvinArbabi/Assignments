@@ -7,7 +7,7 @@ https://github.com/ArvinArbabi/Assignments/tree/master
 class Message:
     # Constants
     MAX_LEN = 50
-    EMPTY = ""
+    EMPTY_STR = ""
 
     # A constructor with parameters self, sender and recipient.
     # Sets values for sender and recipient.
@@ -17,28 +17,45 @@ class Message:
         self.str_ok(recipiant)
         self.sender = sender
         self.recipiant = recipiant
-        self.body = self.EMPTY
+        self.body = self.EMPTY_STR
 
-    # Mutator - setting sender
     def set_sender(self, sender):
-        self.str_ok(sender)
-        self.sender = sender
-    
+    ## Sets sender of the message
+    # Validates parameter else sets to default
+    #  @param sender
+    #  @return Boolean 
+        if self.str_ok(sender):  # requires helper method to validate string
+            self.sender = sender
+            return True
+        self.sender = self.EMPTY_STR 
+        return False 
+
     # Mutator - setting recipiant
     def set_recipiant(self, recipiant):
-        self.str_ok(recipiant)
-        self.recipiant = recipiant
-    
+    ## Sets recipiant of the message
+    # Validates parameter else sets to default
+    #  @param recipiant
+    #  @return Boolean 
+        if self.str_ok(recipiant):  # requires helper method to validate string
+            self.recipiant = recipiant
+            return True
+        self.recipiant = self.EMPTY_STR 
+        return False 
+
     # A method append with parameters self and line.
     # Line contains the line of text to add to the body of the email message.
     # End each email message line with a newline character.
     def append(self, line):
-        self.str_ok(self.body)
-        self.body += line + "\n"
+        if self.str_ok(line):  # requires helper method to validate string
+            self.body += line + "\n"
+            return True
+        self._sender = self.EMPTY_STR 
+        return False 
+        
     
     # Clears the content of the email body
     def clear_body(self):
-        self.body = self.EMPTY
+        self.body = self.EMPTY_STR
 
     # A method to_string that returns a string representation of the entire message.
     # The entire message includes the sender, the recipient and the body of the message.    
@@ -47,9 +64,10 @@ class Message:
         return m
 
     # A helper method str_ok() that validates str parameters.
+    
     def str_ok(self, value):
-        if len(value) > self.MAX_LEN:
-            raise ValueError("Invalid value: string must be less than 50 characters.")
+        return len(value) <= self.MAX_LEN
+            
 # ========================================================
 # From: Arvin
 # To: self
