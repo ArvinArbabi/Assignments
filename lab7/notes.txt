@@ -1,0 +1,29 @@
+Python is an object oriented language:
+    object - collection of data (variables) and methods (functions) that act on those data
+             - method uses data as a blueprint
+
+Classes allow you to make custom objects that contain attributes (finer details) and methods (functions)
+
+what is self?
+self represents the instance of a class 
+    - instance is a form of an object(modified version of a class)
+
+HOW TO MODIFY CLASS
+
+class Song:
+    def song_name(self, name):
+        self.name = name
+    this function gets the name of the song
+
+    def get_song():
+        return self.name
+    this function returns whatever you set the name of the song as
+
+s = Song()
+this stores the class into a variable
+
+s.song_name("song name")
+this changes the title of the song to whatever you put in the string
+
+print(s.song_name())
+this calls the function from inside of the class

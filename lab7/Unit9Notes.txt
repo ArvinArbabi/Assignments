@@ -1,0 +1,21 @@
+Classes are like cookie cutters,
+objects are "instances" (finer details) of classes
+
+example: person is a class, Arvin is an object
+         dog is a class, Finn is an object
+
+Python itself is shipped with many pre defined classes
+for instance, 'String' is a class. Integer is a class. Float is class. Etc...
+
+a = 5.2 --> a is an instance of a 'Float' class with a value of 5.2
+
+an object has functions, variable, and data
+a person class can have DOB, address, name as variable templates
+a person class can have get_age() as a function definition 
+
+in order to maintain large programs, it is important we categorize code into
+classes which encapsulates logic of operations for that single class.
+
+Classes helps you organize your code better.
+
+center of objected oriented languages is a class
