@@ -1,0 +1,74 @@
+import sqlite3
+
+conn = sqlite3.connect('Arbabi.db')
+
+c = conn.cursor()
+
+# Drops table if it already exists.
+c.execute("DROP TABLE IF EXISTS PopByRegion")
+
+# storing table into a variable
+table = ("""CREATE TABLE PopByRegion (
+    region text,
+    population integer  
+    )""")
+
+# creates the table 
+c.execute(table)
+
+# adds values into table
+c.execute("INSERT INTO PopByRegion VALUES ('Central Africa', 330993)")
+c.execute("INSERT INTO PopByRegion VALUES ('Southeastern Africa', 743112)")
+c.execute("INSERT INTO PopByRegion VALUES ('Japan', 100562)")
+
+c.execute('SELECT Region, Population FROM PopByRegion')
+
+print(c.fetchall())
+
+c.execute('SELECT Region, Population FROM PopByRegion ORDER by Region')
+
+print(c.fetchall())
+
+c.execute('SELECT Region FROM PopByRegion')
+
+print(c.fetchall())
+
+c.execute ('SELECT Region FROM PopbyRegion WHERE Population > 400000')
+
+print(c.fetchall())
+
+c.execute('SELECT * FROM PopByRegion WHERE Region = "Japan"')
+
+print(c.fetchone())
+
+c.execute('''UPDATE PopByRegion SET Population = 100600 WHERE Region = "Japan"''')
+
+c.execute('SELECT * FROM PopByRegion WHERE Region = "Japan"')
+
+print(c.fetchone())
+
+c.execute('DELETE FROM PopByRegion WHERE Region < "S"')
+
+c.execute('SELECT * FROM PopByRegion')
+
+print(c.fetchall())
+
+# prints the values in the table as a list
+
+
+# commits the current transaction
+conn.commit()
+
+# closes the connection to SQlite3
+conn.close()
+
+# ========================================================[test run]==========
+# PS C:\work\assignments\lab10>  c:; cd 'c:\work\assignments\lab10'; & 'C:\Users\arvin_5blwkdx\AppData\Local\Microsoft\WindowsApps\python3.9.exe' 'c:\Users\arvin_5blwkdx\.vscode\extensions\ms-python.python-2022.4.1\pythonFiles\lib\python\debugpy\launcher' '55443' '--' 'c:\work\assignments\lab10\ArvinArbabiLab10' 
+# [('Central Africa', 330993), ('Southeastern Africa', 743112), ('Japan', 100562)]
+# [('Central Africa', 330993), ('Japan', 100562), ('Southeastern Africa', 743112)]
+# [('Central Africa',), ('Southeastern Africa',), ('Japan',)]
+# [('Southeastern Africa',)]
+# ('Japan', 100562)
+# ('Japan', 100600)
+# [('Southeastern Africa', 743112)]x
+# PS C:\work\assignments\lab10> 
